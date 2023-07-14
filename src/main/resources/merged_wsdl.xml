@@ -13,7 +13,7 @@
 
     <wsdl:types>
         <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
-            <wsdl:import namespace="http://tempuri.org/" schemaLocation="calculator.xsd"/>
+            <wsdl:include schemaLocation="calculator.xsd"/>
         </s:schema>
     </wsdl:types>
 
