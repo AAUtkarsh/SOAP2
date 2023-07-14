@@ -1,0 +1,46 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:tns="http://tempuri.org/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  targetNamespace="http://tempuri.org/">
+
+    <wsdl:types>
+        <xsd:schema targetNamespace="http://tempuri.org/">
+            <xsd:import namespace="http://tempuri.org/" schemaLocation="calculator.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="AddRequest">
+        <wsdl:part name="parameters" element="tns:Add"/>
+    </wsdl:message>
+    <wsdl:message name="AddResponse">
+        <wsdl:part name="parameters" element="tns:AddResponse"/>
+    </wsdl:message>
+
+    <wsdl:portType name="CalculatorPortType">
+        <wsdl:operation name="Add">
+            <wsdl:input message="tns:AddRequest"/>
+            <wsdl:output message="tns:AddResponse"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="CalculatorBinding" type="tns:CalculatorPortType">
+        <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="Add">
+            <soap:operation soapAction="http://tempuri.org/Add"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+
+    <wsdl:service name="CalculatorService">
+        <wsdl:port name="CalculatorPort" binding="tns:CalculatorBinding">
+            <soap:address location="http://www.dneonline.com/calculator.asmx"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>
